@@ -1,5 +1,6 @@
 package tests;
 
+import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,9 +24,10 @@ public class Login extends TestBase{
 
     @Test
     public void login1(){
+        User user = User.builder().email("katuha1995@gmail.com").password("12345.com").build();
         app.getUser().initLogin();
         app.getUser().pause(2000);
-        app.getUser().fillInLoginForm("katuha1995@gmail.com","12345.com");
+        app.getUser().fillInLoginForm(user);
         app.getUser().submitLogin();
         app.getUser().pause(2000);
         Assert.assertTrue(app.getUser().isLogged());
