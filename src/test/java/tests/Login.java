@@ -20,8 +20,6 @@ public class Login extends TestBase{
         }
     }
 
-
-
     @Test
     public void login1(){
         User user = User.builder().email("katuha1995@gmail.com").password("12345.com").build();

@@ -12,8 +12,10 @@ public class BoardHelper extends HelperBase{
         super(wd);
     }
     public void initBoardCreation() {
-        click(By.cssSelector("[data-testid='header-create-menu-button']"));
-        click(By.cssSelector("[aria-label = 'BoardIcon']"));
+        click(By.cssSelector("div.board-tile.mod-add"));
+      //  click(By.cssSelector("[data-testid='header-create-menu-button']"));
+       // click(By.cssSelector("[aria-label = 'BoardIcon']"));
+
     }
 
     public void fillInBoardCreationForm(String title) {
@@ -23,7 +25,6 @@ public class BoardHelper extends HelperBase{
         type(By.cssSelector("[data-testid='create-board-title-input']"),board.getTitle());
     }
 
-
     public void scrollDownTheForm() {
         Actions action = new Actions(wd);
         WebElement container = wd.findElement(By.cssSelector("[data-testid = 'header-create-menu-popover']"));
@@ -32,18 +33,20 @@ public class BoardHelper extends HelperBase{
         int y = rect.getY()+rect.getHeight()/2;
         action.moveByOffset(x,y).click().perform();
     }
+
     public void submitBoardCreation() {
         click(By.cssSelector("[data-testid = 'create-board-submit-button']"));
     }
+
     public boolean isCreated() {
         return wd.findElements(By.cssSelector(".list-name-input")).size()>0;
     }
+
     public void returnToHomePage() {
-        click(By.cssSelector(".m2N684FcksCyfT"));
+        click(By.cssSelector("a[href='/']"));
     }
 
     public int getBoardCount() {
-        // return wd.findElements(By.cssSelector(".boards-page-board-section-list-item")).size()-1-recentlyViewedBoards();
         return wd.findElements(By.cssSelector(".board-tile-fade")).size()-1-recentlyViewedBoards();
     }
     //.board-tile-fade
@@ -78,5 +81,4 @@ public class BoardHelper extends HelperBase{
     public void chooseBackground() {
         click(By.cssSelector("[aria-label='CheckIcon']"));
     }
-
 }
